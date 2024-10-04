@@ -1932,6 +1932,8 @@ void GI10::render(CapsaicinInternal &capsaicin) noexcept
     gfxProgramSetParameter(
         gfx_, gi10_program_, "g_GIDenoiser_BlurSampleCountBuffer", gi_denoiser_.blur_sample_count_buffer_);
 
+    // TODO: add extra markers (TimedSection)
+
     // Clear bucket overflow count
     if (options_.gi10_hash_grid_cache_debug_stats)
     {
@@ -2028,6 +2030,7 @@ void GI10::render(CapsaicinInternal &capsaicin) noexcept
         gfxCommandDispatchIndirect(gfx_, dispatch_command_buffer_);
     }
 
+    // DEV_NOTE: performs 3x3 neighbourd reprojection + LRU cache reprojection + importance sample direction for populating probe
     // Importance sample the spawned probes
     {
         TimedSection const timed_section(*this, "SampleScreenProbes");
