@@ -83,6 +83,7 @@ float GIDenoiser_GetPreviousDepth(in float2 uv, in float depth)
 }
 
 // Removes NaNs from the color values.
+// DEV_NOTE(OPTIM): use -min(-color, 0);
 float GIDenoiser_RemoveNaNs(in float color)
 {
     color /= (1.0f + color);
@@ -93,6 +94,7 @@ float GIDenoiser_RemoveNaNs(in float color)
 }
 
 // Removes NaNs from the color values.
+// DEV_NOTE(OPTIM): use -min(-color, 0);
 float3 GIDenoiser_RemoveNaNs(in float3 color)
 {
     color /= (1.0f + color);
@@ -103,6 +105,7 @@ float3 GIDenoiser_RemoveNaNs(in float3 color)
 }
 
 // Removes NaNs from the color values.
+// DEV_NOTE(OPTIM): use -min(-color, 0);
 float4 GIDenoiser_RemoveNaNs(in float4 color)
 {
     color /= (1.0f + color);
